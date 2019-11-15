@@ -3,7 +3,6 @@
 //  Toolbar
 //
 //  Created by Guzman, Mario on 4/29/19.
-//  Copyright © 2019 Digimarc Corp. All rights reserved.
 //
 
 import Cocoa
