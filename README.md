@@ -1,7 +1,7 @@
 # toolbar
 ### Programmatically constructing an NSToolbar (AppKit) for macOS.
 
-<img src="images/classic_bordered_full.png" width=80%>
+<img src="images/classic_full.png" width=80%>
 <img src="images/automatic_toolbar_style.png" width=80%>
 
 Learn how to programmatically create an `NSToolbar` with `NSToolbarItem` and `NSToolbarItemGroup` elements in order to get expected behavior like overflow items for free.
