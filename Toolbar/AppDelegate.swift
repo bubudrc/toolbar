@@ -24,4 +24,11 @@ class AppDelegate: NSObject, NSApplicationDelegate
     {
         return true 
     }
+    
+    @objc func toolbarPickerDidSelectItem(_ sender: Any)
+    {
+        if  let toolbarItemGroup = sender as? NSToolbarItemGroup {
+            print("toolbar item group selected index: \(toolbarItemGroup.selectedIndex)")
+        }
+    }
 }
