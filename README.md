@@ -8,7 +8,7 @@ Learn how to programmatically create an `NSToolbar` with `NSToolbarItem` and `NS
 
 <img src="images/toolbar_overflow_1.png" width=80%>
 
-As of macOS Catalina, you can also set the `isBordered` element to gain an NSButton look and feel for free without having to set the `view` property of `NSToolbarItem`.
+As of macOS Catalina, you can also set the `isBordered` element to gain an `NSButton` look and feel for free without having to set the `view` property of `NSToolbarItem` with an `NSButton`.
 
 <img src="images/classic_bordered_compact.png" width=80%>
 
