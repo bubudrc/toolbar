@@ -1,8 +1,13 @@
-# toolbar
+# toolbar (NSToolbar example)
 ### Programmatically constructing an NSToolbar (AppKit) for macOS.
 
-<img src="images/classic_full.png" width=80%>
-<img src="images/automatic_toolbar_style.png" width=80%>
+<img src="images/specialized_toolbar_items.png" width=80%>
+
+#### Update April 2021 Added examples for the following:
+
+- `NSMenuToolbarItem`
+- `NSSharingServicePickerToolbarItem`
+- `NSSearchToolbarItem`
 
 Learn how to programmatically create an `NSToolbar` with `NSToolbarItem` and `NSToolbarItemGroup` elements in order to get expected behavior like overflow items for free.
 
