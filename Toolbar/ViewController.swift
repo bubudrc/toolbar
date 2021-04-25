@@ -11,16 +11,38 @@ class MainWindowController: NSWindowController, NSToolbarDelegate, NSToolbarItem
 {
     let mainWindowToolbarIdentifier = NSToolbar.Identifier("MainWindowToolbar")
     
-    let toolbarItemSettings = NSToolbarItem.Identifier("ToolbarSettingsItem")
+    //  Standard examples of `NSToolbarItem`
     let toolbarItemUserAccounts = NSToolbarItem.Identifier("ToolbarUserAccountsItem")
     let toolbarItemMoreInfo = NSToolbarItem.Identifier("ToolbarMoreInfoItem")
     
+    /// Example of `NSMenuToolbarItem`
+    let toolbarMoreActions = NSToolbarItem.Identifier("ToolbarMoreActionsItem")
+    
+    /// Example of `NSSharingServicePickerToolbarItem`
+    let toolbarShareButtonItem = NSToolbarItem.Identifier(rawValue: "ToolbarShareButtonItem")
+    
+    /// Example of `NSToolbarItemGroup`
+    let toolbarPickerItem = NSToolbarItem.Identifier("ToolbarPickerItemGroup")
+    
+    /// Example of `NSSearchToolbarItem`
+    let toolbarSearchItem = NSToolbarItem.Identifier("ToolbarSearchItem")
+    
+    //  `visibilityPriority` is set to `.low` for these items to demostrate how
+    //  to make some items disappear before others when space gets a bit tight.
     let toolbarNewFolder = NSToolbarItem.Identifier("ToolbarNewFolderItem")
     let toolbarNewSmartFolder = NSToolbarItem.Identifier("ToolbarNewSmartFolderItem")
     let toolbarNewBurnFolder = NSToolbarItem.Identifier("ToolbarNewBurnFolderItem")
     
-    //  For Segmented Control style Toolbar Item Group
-    let toolbarPickerItem = NSToolbarItem.Identifier("ToolbarPickerItemGroup")
+    /// Items for the `NSMenuToolbarItem`
+    var actionsMenu: NSMenu = {
+        var menu = NSMenu(title: "")
+        let menuItem1 = NSMenuItem(title: "Get info", action: nil, keyEquivalent: "")
+        let menuItem2 = NSMenuItem(title: "Quick Look", action: nil, keyEquivalent: "")
+        let menuItem3 = NSMenuItem.separator()
+        let menuItem4 = NSMenuItem(title: "Move to trash...", action: nil, keyEquivalent: "")
+        menu.items = [menuItem1, menuItem2, menuItem3, menuItem4]
+        return menu
+    }()
     
     override func windowDidLoad()
     {
@@ -39,7 +61,7 @@ class MainWindowController: NSWindowController, NSToolbarDelegate, NSToolbarItem
             newToolbar.centeredItemIdentifier = self.toolbarPickerItem
             
             unwrappedWindow.title = "Window Title"
-            if #available(OSX 10.16, *) {
+            if #available(macOS 11.0, *) {
                 unwrappedWindow.toolbarStyle = .automatic
                 unwrappedWindow.subtitle = "Window Subtitle"
             } else {
@@ -56,15 +78,15 @@ class MainWindowController: NSWindowController, NSToolbarDelegate, NSToolbarItem
                  itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
                  willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem?
     {
-        if  itemIdentifier == self.toolbarItemSettings {
-            let toolbarItem = NSToolbarItem(itemIdentifier: itemIdentifier)
-            toolbarItem.target = self
-            toolbarItem.action = #selector(testAction(_:))
-            toolbarItem.label = "Settings"
-            toolbarItem.paletteLabel = "Settings"
-            toolbarItem.toolTip = "Open Settings panel"
-            if #available(OSX 10.16, *) {
-                toolbarItem.image = NSImage(systemSymbolName: "gearshape", accessibilityDescription: "")
+        if  itemIdentifier == self.toolbarMoreActions {
+            let toolbarItem = NSMenuToolbarItem(itemIdentifier: itemIdentifier)
+            toolbarItem.showsIndicator = true // Make `false` if you don't want the down arrow to be drawn
+            toolbarItem.menu = self.actionsMenu
+            toolbarItem.label = "More Actions"
+            toolbarItem.paletteLabel = "More Actions"
+            toolbarItem.toolTip = "Displays available actions"
+            if  #available(macOS 11.0, *) {
+                toolbarItem.image = NSImage(systemSymbolName: "ellipsis.circle", accessibilityDescription: "")
                 toolbarItem.isBordered = true
             } else {
                 toolbarItem.image = NSImage(named: NSImage.advancedName)
@@ -79,7 +101,7 @@ class MainWindowController: NSWindowController, NSToolbarDelegate, NSToolbarItem
             toolbarItem.label = "Accounts"
             toolbarItem.paletteLabel = "Accounts"
             toolbarItem.toolTip = "Open Accounts panel"
-            if #available(OSX 10.16, *) {
+            if  #available(macOS 11.0, *) {
                 toolbarItem.image = NSImage(systemSymbolName: "at", accessibilityDescription: "")
                 toolbarItem.isBordered = true
             } else {
@@ -95,7 +117,7 @@ class MainWindowController: NSWindowController, NSToolbarDelegate, NSToolbarItem
             toolbarItem.label = "More Info"
             toolbarItem.paletteLabel = "More Info"
             toolbarItem.toolTip = "See more info"
-            if #available(OSX 10.16, *) {
+            if  #available(macOS 11.0, *) {
                 toolbarItem.image = NSImage(systemSymbolName: "info.circle.fill", accessibilityDescription: "")
                 toolbarItem.isBordered = true
             } else {
@@ -111,7 +133,8 @@ class MainWindowController: NSWindowController, NSToolbarDelegate, NSToolbarItem
             toolbarItem.label = "New Folder"
             toolbarItem.paletteLabel = "New Folder"
             toolbarItem.toolTip = "Create new folder"
-            if #available(OSX 10.16, *) {
+            toolbarItem.visibilityPriority = .low
+            if  #available(macOS 11.0, *) {
                 toolbarItem.image = NSImage(systemSymbolName: "folder.badge.plus", accessibilityDescription: "")
                 toolbarItem.isBordered = true
             } else {
@@ -127,7 +150,8 @@ class MainWindowController: NSWindowController, NSToolbarDelegate, NSToolbarItem
             toolbarItem.label = "Smart Folder"
             toolbarItem.paletteLabel = "Smart Folder"
             toolbarItem.toolTip = "Create new smart folder"
-            if #available(OSX 10.16, *) {
+            toolbarItem.visibilityPriority = .low
+            if  #available(macOS 11.0, *) {
                 toolbarItem.image = NSImage(systemSymbolName: "folder.badge.gear", accessibilityDescription: "")
                 toolbarItem.isBordered = true
             } else {
@@ -143,7 +167,8 @@ class MainWindowController: NSWindowController, NSToolbarDelegate, NSToolbarItem
             toolbarItem.label = "Burn"
             toolbarItem.paletteLabel = "Burn"
             toolbarItem.toolTip = "Burn selected folder"
-            if #available(OSX 10.16, *) {
+            toolbarItem.visibilityPriority = .low
+            if  #available(macOS 11.0, *) {
                 toolbarItem.image = NSImage(systemSymbolName: "burn", accessibilityDescription: "")
                 toolbarItem.isBordered = true
             } else {
@@ -170,54 +195,82 @@ class MainWindowController: NSWindowController, NSToolbarDelegate, NSToolbarItem
             return toolbarItem
         }
         
+        if  itemIdentifier == self.toolbarShareButtonItem {
+            let shareItem = NSSharingServicePickerToolbarItem(itemIdentifier: itemIdentifier)
+            shareItem.toolTip = "Share"
+            shareItem.delegate = self
+            if  #available(macOS 11.0, *) {
+                shareItem.menuFormRepresentation?.image = NSImage(systemSymbolName: "square.and.arrow.up", accessibilityDescription: nil)
+            }
+            return shareItem
+        }
+        
+        if  itemIdentifier == self.toolbarSearchItem {
+            //  `NSSearchToolbarItem` is macOS 11 and higher only
+            if  #available(macOS 11.0, *) {
+                let searchItem = NSSearchToolbarItem(itemIdentifier: itemIdentifier)
+                searchItem.resignsFirstResponderWithCancel = true
+                searchItem.searchField.delegate = self
+                searchItem.toolTip = "Search"
+                return searchItem
+            }
+        }
+        
         return nil
     }
     
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier]
     {
-        if #available(OSX 10.16, *) {
+        if  #available(macOS 11.0, *) {
             // The preferred toolbar style in macOS 11 takes up the left side
             // for the window title and subtitle. Let's go with a different
             // toolbar item set for this. You can change the window toolbar
             // style if you want something like macOS 10.15 or older layout.
             return [
-                    NSToolbarItem.Identifier.flexibleSpace,
-                    self.toolbarPickerItem,
-                    NSToolbarItem.Identifier.flexibleSpace,
-                    self.toolbarNewFolder,
-                    self.toolbarNewSmartFolder,
-                    NSToolbarItem.Identifier.space,
-                    self.toolbarItemUserAccounts,
-                    self.toolbarItemSettings
+                NSToolbarItem.Identifier.flexibleSpace,
+                self.toolbarPickerItem,
+                NSToolbarItem.Identifier.flexibleSpace,
+                self.toolbarNewFolder,
+                self.toolbarNewSmartFolder,
+                NSToolbarItem.Identifier.space,
+                self.toolbarItemUserAccounts,
+                self.toolbarMoreActions,
+                NSToolbarItem.Identifier.space,
+                self.toolbarSearchItem,
+                self.toolbarShareButtonItem
             ]
         } else {
             // Use the preferred toolbar item set for older versions of macOS.
             return [
-                    self.toolbarItemUserAccounts,
-                    self.toolbarItemMoreInfo,
-                    NSToolbarItem.Identifier.flexibleSpace,
-                    self.toolbarPickerItem,
-                    NSToolbarItem.Identifier.flexibleSpace,
-                    self.toolbarNewFolder,
-                    self.toolbarNewSmartFolder,
-                    NSToolbarItem.Identifier.space,
-                    self.toolbarNewBurnFolder,
-                    self.toolbarItemSettings
+                self.toolbarItemUserAccounts,
+                self.toolbarItemMoreInfo,
+                NSToolbarItem.Identifier.flexibleSpace,
+                self.toolbarPickerItem,
+                NSToolbarItem.Identifier.flexibleSpace,
+                self.toolbarNewFolder,
+                self.toolbarNewSmartFolder,
+                self.toolbarNewBurnFolder,
+                self.toolbarMoreActions,
+                NSToolbarItem.Identifier.space,
+                self.toolbarShareButtonItem
             ]
         }
     }
     
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier]
     {
-        return [self.toolbarItemSettings,
-                self.toolbarItemUserAccounts,
-                self.toolbarItemMoreInfo,
-                self.toolbarNewFolder,
-                self.toolbarNewSmartFolder,
-                self.toolbarNewBurnFolder,
-                self.toolbarPickerItem,
-                NSToolbarItem.Identifier.space,
-                NSToolbarItem.Identifier.flexibleSpace]
+        return [
+            self.toolbarMoreActions,
+            self.toolbarItemUserAccounts,
+            self.toolbarItemMoreInfo,
+            self.toolbarNewFolder,
+            self.toolbarNewSmartFolder,
+            self.toolbarNewBurnFolder,
+            self.toolbarPickerItem,
+            self.toolbarShareButtonItem,
+            self.toolbarSearchItem,
+            NSToolbarItem.Identifier.space,
+            NSToolbarItem.Identifier.flexibleSpace]
     }
     
     func toolbarWillAddItem(_ notification: Notification)
@@ -249,6 +302,20 @@ class MainWindowController: NSWindowController, NSToolbarDelegate, NSToolbarItem
         // element is selected. This is called on your behalf. Return false if
         // the toolbar item needs to be disabled.
         
+        //  Maybe you want to not enable more actions if nothing in your app
+        //  is selected. Set your condition inside this `if`.
+        if  item.itemIdentifier == self.toolbarMoreActions {
+            return true
+        }
+        
+        //  Maybe you want to not enable the share menu if nothing in your app
+        //  is selected. Set your condition inside this `if`.
+        if  item.itemIdentifier == self.toolbarShareButtonItem {
+            return true
+        }
+        
+        //  Feel free to add more conditions for your other toolbar items here...
+        
         return true
     }
     
@@ -256,9 +323,34 @@ class MainWindowController: NSWindowController, NSToolbarDelegate, NSToolbarItem
     
     @IBAction func testAction(_ sender: Any)
     {
-        if let toolbarItem = sender as? NSToolbarItem {
+        if  let toolbarItem = sender as? NSToolbarItem {
             print("Clicked \(toolbarItem.itemIdentifier)")
         }
+    }
+}
+
+// Conforming to the delegate for the share toolbar item.
+extension MainWindowController: NSSharingServicePickerToolbarItemDelegate
+{
+    func items(for pickerToolbarItem: NSSharingServicePickerToolbarItem) -> [Any] {
+        // Compose an array of items that are sharable such as text, URLs, etc.
+        // depending on the context of your application (i.e. what the user
+        // current has selected in the app and/or they tab they're in).
+        let sharableItems = [URL(string: "https://www.apple.com/")!]
+        return sharableItems
+    }
+}
+
+// Conforming to the delegate for the share toolbar item.
+extension MainWindowController: NSSearchFieldDelegate
+{
+    func searchFieldDidStartSearching(_ sender: NSSearchField) {
+        print("Search field did start receiving input")
+    }
+    
+    func searchFieldDidEndSearching(_ sender: NSSearchField) {
+        print("Search field did end receiving input")
+        sender.resignFirstResponder()
     }
 }
 
