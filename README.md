@@ -3,11 +3,15 @@
 
 <img src="images/specialized_toolbar_items.png" width=80%>
 
-#### Update April 2021 Added examples for the following:
+#### Update May 2021 Added examples for the following:
 
-- `NSMenuToolbarItem`
-- `NSSharingServicePickerToolbarItem`
-- `NSSearchToolbarItem`
+- `NSTitlebarAccessoryViewController` [View Documentation](https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller)
+
+#### Recent updates:
+
+- `NSMenuToolbarItem` [View Documentation](https://developer.apple.com/documentation/appkit/nsmenutoolbaritem)
+- `NSSharingServicePickerToolbarItem` [View Documentation](https://developer.apple.com/documentation/appkit/nssharingservicepicker)
+- `NSSearchToolbarItem` [View Documentation](https://developer.apple.com/documentation/appkit/nssearchtoolbaritem)
 
 Learn how to programmatically create an `NSToolbar` with `NSToolbarItem` and `NSToolbarItemGroup` elements in order to get expected behavior like overflow items for free.
 

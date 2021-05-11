@@ -11,6 +11,9 @@
 		937205FD2277FC9400011A9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937205FC2277FC9400011A9F /* ViewController.swift */; };
 		937205FF2277FC9600011A9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 937205FE2277FC9600011A9F /* Assets.xcassets */; };
 		937206022277FC9600011A9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937206002277FC9600011A9F /* Main.storyboard */; };
+		ACE832DE264A18F200A333AC /* CustomTitlebarAccessoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE832DD264A18F200A333AC /* CustomTitlebarAccessoryViewController.swift */; };
+		ACE832E0264A352600A333AC /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE832DF264A352600A333AC /* Definitions.swift */; };
+		ACE832E2264A356100A333AC /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE832E1264A356100A333AC /* MainWindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +24,9 @@
 		937206012277FC9600011A9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		937206032277FC9600011A9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		937206042277FC9600011A9F /* Toolbar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Toolbar.entitlements; sourceTree = "<group>"; };
+		ACE832DD264A18F200A333AC /* CustomTitlebarAccessoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTitlebarAccessoryViewController.swift; sourceTree = "<group>"; };
+		ACE832DF264A352600A333AC /* Definitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
+		ACE832E1264A356100A333AC /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,14 +59,25 @@
 		937205F92277FC9400011A9F /* Toolbar */ = {
 			isa = PBXGroup;
 			children = (
-				937205FA2277FC9400011A9F /* AppDelegate.swift */,
+				ACE832E1264A356100A333AC /* MainWindowController.swift */,
 				937205FC2277FC9400011A9F /* ViewController.swift */,
-				937205FE2277FC9600011A9F /* Assets.xcassets */,
+				ACE832DC264A18CC00A333AC /* Titlebar Accessory */,
+				ACE832DF264A352600A333AC /* Definitions.swift */,
+				937205FA2277FC9400011A9F /* AppDelegate.swift */,
 				937206002277FC9600011A9F /* Main.storyboard */,
+				937205FE2277FC9600011A9F /* Assets.xcassets */,
 				937206032277FC9600011A9F /* Info.plist */,
 				937206042277FC9600011A9F /* Toolbar.entitlements */,
 			);
 			path = Toolbar;
+			sourceTree = "<group>";
+		};
+		ACE832DC264A18CC00A333AC /* Titlebar Accessory */ = {
+			isa = PBXGroup;
+			children = (
+				ACE832DD264A18F200A333AC /* CustomTitlebarAccessoryViewController.swift */,
+			);
+			path = "Titlebar Accessory";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +152,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				937205FD2277FC9400011A9F /* ViewController.swift in Sources */,
+				ACE832E0264A352600A333AC /* Definitions.swift in Sources */,
+				ACE832DE264A18F200A333AC /* CustomTitlebarAccessoryViewController.swift in Sources */,
 				937205FB2277FC9400011A9F /* AppDelegate.swift in Sources */,
+				ACE832E2264A356100A333AC /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
