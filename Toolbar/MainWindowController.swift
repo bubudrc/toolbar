@@ -55,12 +55,22 @@ class MainWindowController: NSWindowController, NSToolbarItemValidation
             
             unwrappedWindow.title = "My Great App"
             if #available(macOS 11.0, *) {
+                
+                // The toolbar style is best set to .automatic
+                // But it appears to go as .unifiedCompact if
+                // you set as .automatic and titleVisibility as
+                // .hidden
                 unwrappedWindow.toolbarStyle = .unified
+                
                 unwrappedWindow.subtitle = "Toolbar Example"
             } else {
                 // Fallback on earlier versions
             }
+            
+            // Hiding the title visibility in order to gain more toolbar space.
+            // Set this property to .visible or delete this line to get it back.
             unwrappedWindow.titleVisibility = .hidden
+            
             unwrappedWindow.toolbar = newToolbar
             unwrappedWindow.toolbar?.validateVisibleItems()
         }
@@ -70,8 +80,7 @@ class MainWindowController: NSWindowController, NSToolbarItemValidation
     
     func validateToolbarItem(_ item: NSToolbarItem) -> Bool
     {
-        // let itemIdentifier = item.itemIdentifier
-        // print("Validating \(itemIdentifier)")
+        // print("Validating \(item.itemIdentifier)")
         
         // Use this method to enable/disable toolbar items as user takes certain
         // actions. For example, so items may not be applicable if a certain UI
@@ -91,9 +100,15 @@ class MainWindowController: NSWindowController, NSToolbarItemValidation
         }
         
         //  Return false (to disable) this toolbar item if we never create a
-        //  titlebar accessory view.
+        //  titlebar accessory view. This is an example of a conditional
+        //  example.
         if  item.itemIdentifier == NSToolbarItem.Identifier.toolbarItemToggleTitlebarAccessory {
             return self.titlebarAccessoryViewController != nil
+        }
+        
+        //  Example of returning false to demonstrate a disabled toolbar item.
+        if  item.itemIdentifier == NSToolbarItem.Identifier.toolbarItemMoreInfo {
+            return false
         }
         
         //  Feel free to add more conditions for your other toolbar items here...
