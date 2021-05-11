@@ -55,11 +55,12 @@ class MainWindowController: NSWindowController, NSToolbarItemValidation
             
             unwrappedWindow.title = "My Great App"
             if #available(macOS 11.0, *) {
-                unwrappedWindow.toolbarStyle = .automatic
+                unwrappedWindow.toolbarStyle = .unified
                 unwrappedWindow.subtitle = "Toolbar Example"
             } else {
                 // Fallback on earlier versions
             }
+            unwrappedWindow.titleVisibility = .hidden
             unwrappedWindow.toolbar = newToolbar
             unwrappedWindow.toolbar?.validateVisibleItems()
         }
