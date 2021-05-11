@@ -8,6 +8,12 @@
 
 import Cocoa
 
+extension NSStoryboard.SceneIdentifier
+{
+    // The scene identifier for your custom titlebar accessory view controller
+    static let customTitlebarAccessoryViewController = NSStoryboard.SceneIdentifier("CustomTitlebarAccessoryViewController")
+}
+
 extension NSToolbar.Identifier
 {
     static let mainWindowToolbarIdentifier = NSToolbar.Identifier("MainWindowToolbar")

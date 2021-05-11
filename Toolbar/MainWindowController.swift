@@ -313,7 +313,7 @@ extension MainWindowController
 {
     private func configureTitlebarAccessoryView()
     {
-        if  let titlebarController = self.storyboard?.instantiateController(withIdentifier: CustomTitlebarAccessoryViewController.sceneIdentifier) as? CustomTitlebarAccessoryViewController {
+        if  let titlebarController = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier.customTitlebarAccessoryViewController) as? CustomTitlebarAccessoryViewController {
             titlebarController.layoutAttribute = .bottom
             titlebarController.fullScreenMinHeight = titlebarController.view.bounds.height
             self.window?.addTitlebarAccessoryViewController(titlebarController)

@@ -10,8 +10,6 @@ import Cocoa
 
 class CustomTitlebarAccessoryViewController: NSTitlebarAccessoryViewController
 {
-    static let sceneIdentifier = NSStoryboard.SceneIdentifier("CustomTitlebarAccessoryViewController")
-
     override func viewDidLoad()
     {
         super.viewDidLoad()
