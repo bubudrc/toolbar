@@ -51,20 +51,18 @@ class MainWindowController: NSWindowController, NSToolbarItemValidation
             newToolbar.allowsUserCustomization = true
             newToolbar.autosavesConfiguration = true
             newToolbar.displayMode = .default
+            
+            // Example on center-pinning a toolbar item
             newToolbar.centeredItemIdentifier = NSToolbarItem.Identifier.toolbarPickerItem
             
             unwrappedWindow.title = "My Great App"
             if #available(macOS 11.0, *) {
-                
+                unwrappedWindow.subtitle = "Toolbar Example"
                 // The toolbar style is best set to .automatic
                 // But it appears to go as .unifiedCompact if
                 // you set as .automatic and titleVisibility as
                 // .hidden
                 unwrappedWindow.toolbarStyle = .unified
-                
-                unwrappedWindow.subtitle = "Toolbar Example"
-            } else {
-                // Fallback on earlier versions
             }
             
             // Hiding the title visibility in order to gain more toolbar space.
