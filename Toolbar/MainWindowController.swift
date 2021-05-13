@@ -132,6 +132,12 @@ extension MainWindowController: NSToolbarDelegate
                  itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
                  willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem?
     {
+        //  macOS 11: A rounded square appears behind the icon on mouse-over
+        //  macOS X : The item has the appearance of an NSButton (button frame)
+        //            If false, it's just a free-standing icon as they appear
+        //            in typical Preferences windows with toolbars.
+        let isBordered = true
+        
         if  itemIdentifier == NSToolbarItem.Identifier.toolbarItemToggleTitlebarAccessory {
             let toolbarItem = NSToolbarItem(itemIdentifier: itemIdentifier)
             toolbarItem.target = self
@@ -139,9 +145,9 @@ extension MainWindowController: NSToolbarDelegate
             toolbarItem.label = "Hide"
             toolbarItem.paletteLabel = "Toggle additional accessories"
             toolbarItem.toolTip = "Hides additional accessories"
+            toolbarItem.isBordered = isBordered
             if  #available(macOS 11.0, *) {
                 toolbarItem.image = NSImage(systemSymbolName: "menubar.arrow.up.rectangle", accessibilityDescription: "")
-                toolbarItem.isBordered = true
             } else {
                 toolbarItem.image = NSImage(named: NSImage.touchBarGoUpTemplateName)
             }
@@ -157,9 +163,9 @@ extension MainWindowController: NSToolbarDelegate
             toolbarItem.label = "More Actions"
             toolbarItem.paletteLabel = "More Actions"
             toolbarItem.toolTip = "Displays available actions"
+            toolbarItem.isBordered = isBordered
             if  #available(macOS 11.0, *) {
                 toolbarItem.image = NSImage(systemSymbolName: "ellipsis.circle", accessibilityDescription: "")
-                toolbarItem.isBordered = true
             } else {
                 toolbarItem.image = NSImage(named: NSImage.advancedName)
             }
@@ -174,9 +180,9 @@ extension MainWindowController: NSToolbarDelegate
             toolbarItem.paletteLabel = "Accounts"
             toolbarItem.toolTip = "Open Accounts panel"
             toolbarItem.visibilityPriority = .low
+            toolbarItem.isBordered = isBordered
             if  #available(macOS 11.0, *) {
                 toolbarItem.image = NSImage(systemSymbolName: "at", accessibilityDescription: "")
-                toolbarItem.isBordered = true
             } else {
                 toolbarItem.image = NSImage(named: NSImage.userAccountsName)
             }
@@ -190,10 +196,10 @@ extension MainWindowController: NSToolbarDelegate
             toolbarItem.label = "More Info"
             toolbarItem.paletteLabel = "More Info"
             toolbarItem.toolTip = "See more info"
+            toolbarItem.isBordered = isBordered
             toolbarItem.visibilityPriority = .low
             if  #available(macOS 11.0, *) {
                 toolbarItem.image = NSImage(systemSymbolName: "info.circle.fill", accessibilityDescription: "")
-                toolbarItem.isBordered = true
             } else {
                 toolbarItem.image = NSImage(named: NSImage.infoName)
             }
