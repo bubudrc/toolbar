@@ -7,26 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		937205FB2277FC9400011A9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937205FA2277FC9400011A9F /* AppDelegate.swift */; };
-		937205FD2277FC9400011A9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937205FC2277FC9400011A9F /* ViewController.swift */; };
 		937205FF2277FC9600011A9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 937205FE2277FC9600011A9F /* Assets.xcassets */; };
 		937206022277FC9600011A9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937206002277FC9600011A9F /* Main.storyboard */; };
-		ACE832DE264A18F200A333AC /* CustomTitlebarAccessoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE832DD264A18F200A333AC /* CustomTitlebarAccessoryViewController.swift */; };
-		ACE832E0264A352600A333AC /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE832DF264A352600A333AC /* Definitions.swift */; };
-		ACE832E2264A356100A333AC /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE832E1264A356100A333AC /* MainWindowController.swift */; };
+		AC5E5614273833C0005F0EF6 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E5613273833C0005F0EF6 /* MainWindowController.swift */; };
+		AC5E5616273833DA005F0EF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E5615273833DA005F0EF6 /* ViewController.swift */; };
+		AC5E56182738342C005F0EF6 /* CustomTitlebarAccessoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E56172738342C005F0EF6 /* CustomTitlebarAccessoryViewController.swift */; };
+		AC5E561A27383442005F0EF6 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E561927383442005F0EF6 /* Definitions.swift */; };
+		AC5E561C27383460005F0EF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E561B27383460005F0EF6 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		937205F72277FC9400011A9F /* Toolbar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Toolbar.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		937205FA2277FC9400011A9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		937205FC2277FC9400011A9F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		937205FE2277FC9600011A9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		937206012277FC9600011A9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		937206032277FC9600011A9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		937206042277FC9600011A9F /* Toolbar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Toolbar.entitlements; sourceTree = "<group>"; };
-		ACE832DD264A18F200A333AC /* CustomTitlebarAccessoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTitlebarAccessoryViewController.swift; sourceTree = "<group>"; };
-		ACE832DF264A352600A333AC /* Definitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
-		ACE832E1264A356100A333AC /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		AC5E5613273833C0005F0EF6 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		AC5E5615273833DA005F0EF6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AC5E56172738342C005F0EF6 /* CustomTitlebarAccessoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTitlebarAccessoryViewController.swift; sourceTree = "<group>"; };
+		AC5E561927383442005F0EF6 /* Definitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
+		AC5E561B27383460005F0EF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,11 +59,10 @@
 		937205F92277FC9400011A9F /* Toolbar */ = {
 			isa = PBXGroup;
 			children = (
-				ACE832E1264A356100A333AC /* MainWindowController.swift */,
-				937205FC2277FC9400011A9F /* ViewController.swift */,
+				AC5E561B27383460005F0EF6 /* AppDelegate.swift */,
+				AC5E561D2738346B005F0EF6 /* Main Window */,
 				ACE832DC264A18CC00A333AC /* Titlebar Accessory */,
-				ACE832DF264A352600A333AC /* Definitions.swift */,
-				937205FA2277FC9400011A9F /* AppDelegate.swift */,
+				AC5E561927383442005F0EF6 /* Definitions.swift */,
 				937206002277FC9600011A9F /* Main.storyboard */,
 				937205FE2277FC9600011A9F /* Assets.xcassets */,
 				937206032277FC9600011A9F /* Info.plist */,
@@ -72,10 +71,19 @@
 			path = Toolbar;
 			sourceTree = "<group>";
 		};
+		AC5E561D2738346B005F0EF6 /* Main Window */ = {
+			isa = PBXGroup;
+			children = (
+				AC5E5613273833C0005F0EF6 /* MainWindowController.swift */,
+				AC5E5615273833DA005F0EF6 /* ViewController.swift */,
+			);
+			path = "Main Window";
+			sourceTree = "<group>";
+		};
 		ACE832DC264A18CC00A333AC /* Titlebar Accessory */ = {
 			isa = PBXGroup;
 			children = (
-				ACE832DD264A18F200A333AC /* CustomTitlebarAccessoryViewController.swift */,
+				AC5E56172738342C005F0EF6 /* CustomTitlebarAccessoryViewController.swift */,
 			);
 			path = "Titlebar Accessory";
 			sourceTree = "<group>";
@@ -106,9 +114,10 @@
 		937205EF2277FC9400011A9F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1240;
-				ORGANIZATIONNAME = "Digimarc Corp.";
+				ORGANIZATIONNAME = "Mario Guzman";
 				TargetAttributes = {
 					937205F62277FC9400011A9F = {
 						CreatedOnToolsVersion = 10.1;
@@ -151,11 +160,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				937205FD2277FC9400011A9F /* ViewController.swift in Sources */,
-				ACE832E0264A352600A333AC /* Definitions.swift in Sources */,
-				ACE832DE264A18F200A333AC /* CustomTitlebarAccessoryViewController.swift in Sources */,
-				937205FB2277FC9400011A9F /* AppDelegate.swift in Sources */,
-				ACE832E2264A356100A333AC /* MainWindowController.swift in Sources */,
+				AC5E5616273833DA005F0EF6 /* ViewController.swift in Sources */,
+				AC5E56182738342C005F0EF6 /* CustomTitlebarAccessoryViewController.swift in Sources */,
+				AC5E561A27383442005F0EF6 /* Definitions.swift in Sources */,
+				AC5E561C27383460005F0EF6 /* AppDelegate.swift in Sources */,
+				AC5E5614273833C0005F0EF6 /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

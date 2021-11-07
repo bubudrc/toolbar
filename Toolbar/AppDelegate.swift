@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Toolbar
-//
-//  Created by Guzman, Mario on 4/29/19.
-//
-
 import Cocoa
 
 @NSApplicationMain
@@ -22,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool
     {
-        return true 
+        return true
     }
     
     @objc func toolbarPickerDidSelectItem(_ sender: Any)

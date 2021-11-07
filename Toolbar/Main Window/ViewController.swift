@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  Toolbar
-//
-//  Created by Guzman, Mario on 4/29/19.
-//
-
 import Cocoa
 
 class ViewController: NSViewController
