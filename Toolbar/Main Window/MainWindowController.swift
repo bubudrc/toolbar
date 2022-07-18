@@ -138,7 +138,7 @@ extension MainWindowController: NSToolbarDelegate
             toolbarItem.isBordered = isBordered
             toolbarItem.image = NSImage(systemSymbolName: "menubar.arrow.up.rectangle", accessibilityDescription: "")
             if  #available(macOS 13.0, *) {
-                // toolbarItem.possibleLabels = ["Show", "Hide"]
+                toolbarItem.possibleLabels = ["Show", "Hide"]
             }
             //  Getting a local handle so we can toggle its image, title, and tooltip
             self.titlebarAccessoryViewControllerToggleButton = toolbarItem
@@ -149,7 +149,7 @@ extension MainWindowController: NSToolbarDelegate
             let toolbarItem = NSMenuToolbarItem(itemIdentifier: itemIdentifier)
             toolbarItem.showsIndicator = true // Make `false` if you don't want the down arrow to be drawn
             toolbarItem.menu = self.actionsMenu
-            toolbarItem.label = "More Actions"
+            toolbarItem.label = "More"
             toolbarItem.paletteLabel = "More Actions"
             toolbarItem.toolTip = "Displays available actions"
             toolbarItem.isBordered = isBordered
@@ -252,6 +252,7 @@ extension MainWindowController: NSToolbarDelegate
             NSToolbarItem.Identifier.toolbarItemMoreInfo,
             NSToolbarItem.Identifier.flexibleSpace,
             NSToolbarItem.Identifier.toolbarPickerItemMomentary,
+            NSToolbarItem.Identifier.flexibleSpace,
             NSToolbarItem.Identifier.toolbarPickerItem,
             NSToolbarItem.Identifier.flexibleSpace,
             NSToolbarItem.Identifier.toolbarMoreActions,
