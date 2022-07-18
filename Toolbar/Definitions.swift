@@ -29,6 +29,7 @@ extension NSToolbarItem.Identifier
     
     /// Example of `NSToolbarItemGroup`
     static let toolbarPickerItem = NSToolbarItem.Identifier("ToolbarPickerItemGroup")
+    static let toolbarPickerItemMomentary = NSToolbarItem.Identifier("ToolbarPickerItemGroupMomentary")
     
     /// Example of `NSSearchToolbarItem`
     static let toolbarSearchItem = NSToolbarItem.Identifier("ToolbarSearchItem")

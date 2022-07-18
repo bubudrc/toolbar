@@ -48,14 +48,12 @@ class MainWindowController: NSWindowController, NSToolbarItemValidation
             newToolbar.centeredItemIdentifier = NSToolbarItem.Identifier.toolbarPickerItem
             
             unwrappedWindow.title = "My Great App"
-            if #available(macOS 11.0, *) {
-                unwrappedWindow.subtitle = "Toolbar Example"
-                // The toolbar style is best set to .automatic
-                // But it appears to go as .unifiedCompact if
-                // you set as .automatic and titleVisibility as
-                // .hidden
-                unwrappedWindow.toolbarStyle = .unified
-            }
+            unwrappedWindow.subtitle = "Toolbar Example"
+            // The toolbar style is best set to .automatic
+            // But it appears to go as .unifiedCompact if
+            // you set as .automatic and titleVisibility as
+            // .hidden
+            unwrappedWindow.toolbarStyle = .unified
             
             // Hiding the title visibility in order to gain more toolbar space.
             // Set this property to .visible or delete this line to get it back.
@@ -135,13 +133,12 @@ extension MainWindowController: NSToolbarDelegate
             toolbarItem.target = self
             toolbarItem.action = #selector(toggleTitlebarAccessory(_:))
             toolbarItem.label = "Hide"
-            toolbarItem.paletteLabel = "Toggle additional accessories"
+            toolbarItem.paletteLabel = "Toggle accessories"
             toolbarItem.toolTip = "Hides additional accessories"
             toolbarItem.isBordered = isBordered
-            if  #available(macOS 11.0, *) {
-                toolbarItem.image = NSImage(systemSymbolName: "menubar.arrow.up.rectangle", accessibilityDescription: "")
-            } else {
-                toolbarItem.image = NSImage(named: NSImage.touchBarGoUpTemplateName)
+            toolbarItem.image = NSImage(systemSymbolName: "menubar.arrow.up.rectangle", accessibilityDescription: "")
+            if  #available(macOS 13.0, *) {
+                // toolbarItem.possibleLabels = ["Show", "Hide"]
             }
             //  Getting a local handle so we can toggle its image, title, and tooltip
             self.titlebarAccessoryViewControllerToggleButton = toolbarItem
@@ -156,11 +153,7 @@ extension MainWindowController: NSToolbarDelegate
             toolbarItem.paletteLabel = "More Actions"
             toolbarItem.toolTip = "Displays available actions"
             toolbarItem.isBordered = isBordered
-            if  #available(macOS 11.0, *) {
-                toolbarItem.image = NSImage(systemSymbolName: "ellipsis.circle", accessibilityDescription: "")
-            } else {
-                toolbarItem.image = NSImage(named: NSImage.advancedName)
-            }
+            toolbarItem.image = NSImage(systemSymbolName: "ellipsis.circle", accessibilityDescription: "")
             return toolbarItem
         }
         
@@ -173,11 +166,7 @@ extension MainWindowController: NSToolbarDelegate
             toolbarItem.toolTip = "Open Accounts panel"
             toolbarItem.visibilityPriority = .low
             toolbarItem.isBordered = isBordered
-            if  #available(macOS 11.0, *) {
-                toolbarItem.image = NSImage(systemSymbolName: "at", accessibilityDescription: "")
-            } else {
-                toolbarItem.image = NSImage(named: NSImage.userAccountsName)
-            }
+            toolbarItem.image = NSImage(systemSymbolName: "at", accessibilityDescription: "")
             return toolbarItem
         }
         
@@ -190,11 +179,7 @@ extension MainWindowController: NSToolbarDelegate
             toolbarItem.toolTip = "See more info"
             toolbarItem.isBordered = isBordered
             toolbarItem.visibilityPriority = .low
-            if  #available(macOS 11.0, *) {
-                toolbarItem.image = NSImage(systemSymbolName: "info.circle.fill", accessibilityDescription: "")
-            } else {
-                toolbarItem.image = NSImage(named: NSImage.infoName)
-            }
+            toolbarItem.image = NSImage(systemSymbolName: "info.circle.fill", accessibilityDescription: "")
             return toolbarItem
         }
         
@@ -208,10 +193,33 @@ extension MainWindowController: NSToolbarDelegate
             // to define the Selector, it will go down the Responder Chain,
             // which in this app, this method is in AppDelegate. Neat!
             let toolbarItem = NSToolbarItemGroup(itemIdentifier: itemIdentifier, titles: titles, selectionMode: .selectOne, labels: titles, target: nil, action: Selector(("toolbarPickerDidSelectItem:")) )
-            
+            toolbarItem.controlRepresentation = .automatic
+            toolbarItem.selectionMode = .selectOne
             toolbarItem.label = "View"
             toolbarItem.paletteLabel = "View"
             toolbarItem.toolTip = "Change the selected view"
+            toolbarItem.selectedIndex = 0
+            return toolbarItem
+        }
+        
+        if  itemIdentifier == NSToolbarItem.Identifier.toolbarPickerItemMomentary {
+            let titles = ["Back", "Play/Pause", "Next"]
+            let images = [NSImage(systemSymbolName: "backward.fill", accessibilityDescription: nil)!,
+                          NSImage(systemSymbolName: "play.fill", accessibilityDescription: nil)!,
+                          NSImage(systemSymbolName: "forward.fill", accessibilityDescription: nil)!]
+            
+            // This will either be a segmented control or a drop down depending
+            // on your available space.
+            //
+            // NOTE: When you set the target as nil and use the string method
+            // to define the Selector, it will go down the Responder Chain,
+            // which in this app, this method is in AppDelegate. Neat!
+            let toolbarItem = NSToolbarItemGroup(itemIdentifier: itemIdentifier, images: images, selectionMode: .momentary, labels: titles, target: nil, action: Selector(("toolbarPickerDidSelectItem:")) )
+            toolbarItem.controlRepresentation = .automatic
+            toolbarItem.selectionMode = .momentary
+            toolbarItem.label = "Playback"
+            toolbarItem.paletteLabel = "Playback Controls"
+            toolbarItem.toolTip = "Play, pause, go backwards or advance to the next track"
             toolbarItem.selectedIndex = 0
             return toolbarItem
         }
@@ -220,21 +228,17 @@ extension MainWindowController: NSToolbarDelegate
             let shareItem = NSSharingServicePickerToolbarItem(itemIdentifier: itemIdentifier)
             shareItem.toolTip = "Share"
             shareItem.delegate = self
-            if  #available(macOS 11.0, *) {
-                shareItem.menuFormRepresentation?.image = NSImage(systemSymbolName: "square.and.arrow.up", accessibilityDescription: nil)
-            }
+            shareItem.menuFormRepresentation?.image = NSImage(systemSymbolName: "square.and.arrow.up", accessibilityDescription: nil)
             return shareItem
         }
         
         if  itemIdentifier == NSToolbarItem.Identifier.toolbarSearchItem {
             //  `NSSearchToolbarItem` is macOS 11 and higher only
-            if  #available(macOS 11.0, *) {
-                let searchItem = NSSearchToolbarItem(itemIdentifier: itemIdentifier)
-                searchItem.resignsFirstResponderWithCancel = true
-                searchItem.searchField.delegate = self
-                searchItem.toolTip = "Search"
-                return searchItem
-            }
+            let searchItem = NSSearchToolbarItem(itemIdentifier: itemIdentifier)
+            searchItem.resignsFirstResponderWithCancel = true
+            searchItem.searchField.delegate = self
+            searchItem.toolTip = "Search"
+            return searchItem
         }
         
         return nil
@@ -242,35 +246,18 @@ extension MainWindowController: NSToolbarDelegate
     
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier]
     {
-        if  #available(macOS 11.0, *) {
-            // The preferred toolbar style in macOS 11 takes up the left side
-            // for the window title and subtitle. Let's go with a different
-            // toolbar item set for this. You can change the window toolbar
-            // style if you want something like macOS 10.15 or older layout.
-            return [
-                NSToolbarItem.Identifier.toolbarItemToggleTitlebarAccessory,
-                NSToolbarItem.Identifier.toolbarItemUserAccounts,
-                NSToolbarItem.Identifier.toolbarItemMoreInfo,
-                NSToolbarItem.Identifier.flexibleSpace,
-                NSToolbarItem.Identifier.toolbarPickerItem,
-                NSToolbarItem.Identifier.flexibleSpace,
-                NSToolbarItem.Identifier.toolbarMoreActions,
-                NSToolbarItem.Identifier.toolbarShareButtonItem,
-                NSToolbarItem.Identifier.toolbarSearchItem
-            ]
-        } else {
-            // Use the preferred toolbar item set for older versions of macOS.
-            return [
-                NSToolbarItem.Identifier.toolbarItemToggleTitlebarAccessory,
-                NSToolbarItem.Identifier.toolbarItemUserAccounts,
-                NSToolbarItem.Identifier.toolbarItemMoreInfo,
-                NSToolbarItem.Identifier.flexibleSpace,
-                NSToolbarItem.Identifier.toolbarPickerItem,
-                NSToolbarItem.Identifier.flexibleSpace,
-                NSToolbarItem.Identifier.toolbarMoreActions,
-                NSToolbarItem.Identifier.toolbarShareButtonItem
-            ]
-        }
+        return [
+            NSToolbarItem.Identifier.toolbarItemToggleTitlebarAccessory,
+            NSToolbarItem.Identifier.toolbarItemUserAccounts,
+            NSToolbarItem.Identifier.toolbarItemMoreInfo,
+            NSToolbarItem.Identifier.flexibleSpace,
+            NSToolbarItem.Identifier.toolbarPickerItemMomentary,
+            NSToolbarItem.Identifier.toolbarPickerItem,
+            NSToolbarItem.Identifier.flexibleSpace,
+            NSToolbarItem.Identifier.toolbarMoreActions,
+            NSToolbarItem.Identifier.toolbarShareButtonItem,
+            NSToolbarItem.Identifier.toolbarSearchItem
+        ]
     }
     
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier]
@@ -279,6 +266,7 @@ extension MainWindowController: NSToolbarDelegate
             NSToolbarItem.Identifier.toolbarItemToggleTitlebarAccessory,
             NSToolbarItem.Identifier.toolbarMoreActions,
             NSToolbarItem.Identifier.toolbarItemUserAccounts,
+            NSToolbarItem.Identifier.toolbarPickerItemMomentary,
             NSToolbarItem.Identifier.toolbarItemMoreInfo,
             NSToolbarItem.Identifier.toolbarPickerItem,
             NSToolbarItem.Identifier.toolbarShareButtonItem,
@@ -328,19 +316,11 @@ extension MainWindowController
         if  self.titlebarAccessoryViewIsHidden {
             self.titlebarAccessoryViewControllerToggleButton?.label = "Show"
             self.titlebarAccessoryViewControllerToggleButton?.toolTip = "Shows additional accessories"
-            if  #available(macOS 11.0, *) {
-                self.titlebarAccessoryViewControllerToggleButton?.image = NSImage(systemSymbolName: "menubar.arrow.up.rectangle", accessibilityDescription: "")
-            } else {
-                self.titlebarAccessoryViewControllerToggleButton?.image = NSImage(named: NSImage.touchBarGoUpTemplateName)
-            }
+            self.titlebarAccessoryViewControllerToggleButton?.image = NSImage(systemSymbolName: "menubar.arrow.up.rectangle", accessibilityDescription: "")
         } else {
             self.titlebarAccessoryViewControllerToggleButton?.label = "Hide"
             self.titlebarAccessoryViewControllerToggleButton?.toolTip = "Hides additional accessories"
-            if  #available(macOS 11.0, *) {
-                self.titlebarAccessoryViewControllerToggleButton?.image = NSImage(systemSymbolName: "menubar.arrow.down.rectangle", accessibilityDescription: "")
-            } else {
-                self.titlebarAccessoryViewControllerToggleButton?.image = NSImage(named: NSImage.touchBarGoDownTemplateName)
-            }
+            self.titlebarAccessoryViewControllerToggleButton?.image = NSImage(systemSymbolName: "menubar.arrow.down.rectangle", accessibilityDescription: "")
         }
     }
 }
